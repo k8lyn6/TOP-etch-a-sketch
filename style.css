@@ -2,23 +2,50 @@
     width: 500px;
     margin: auto;
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 25px;
 }
-.grid-box {
-    width: 20px;
-    height: 20px;
-    background: pink;
+
+.column {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+.row {
+    background: white;
+}
+
+#graphic {
+    width: 700px;
+    height: 700px;
+    margin: auto;
+    background: red;
+    border-radius: 25px;
 }
 
 #grid-container {
+    position: relative;
     width: 500px;
-    height: 500px;
-    margin: auto;
-    display: grid;
-    flex-wrap: wrap;
-    align-items: center;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-    grid-row-gap: 5px;
-    grid-column-gap: 5px;
-    background: black;
+    height: 500px; 
+    margin-left: 100px; 
+    padding-top: 50px;
+    background: red;
+}
+
+.knob {
+    background: white;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 30px
+}
+
+#knob1 {
+    margin-left: 30px;
+}
+
+#knob2 {
+    margin-left: 475px;
 }

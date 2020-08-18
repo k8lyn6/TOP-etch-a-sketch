@@ -1,20 +1,17 @@
 //Initialize constant variables
-const newColor = "#800080";
+const newColor = "gray";
 const gridContainer = document.getElementById("grid-container");
-let allBoxes = document.getElementsByClassName("grid-box");
+let allBoxes = document.getElementsByClassName("row");
 const gridButton = document.getElementById("grid-button");
 let gridRow = 16;
-let gridSize = gridRow * gridRow;
 
-createGrid(gridSize);
+createGrid(gridRow);
 
 gridButton.addEventListener("click", function(){
     gridRow = prompt("Please enter the size of the grid", "16");
     gridRow = parseInt(gridRow);
-    gridSize = gridRow * gridRow;
-    console.log(gridSize);
     clearGrid();
-    createGrid(gridSize);
+    createGrid(gridRow);
     setNewColor();
 })
 
@@ -27,15 +24,23 @@ function clearGrid(){
 function createGrid(inputSize){   
     for (let i=0; i < inputSize; i++)
     {
-        var gridBox = document.createElement('div');
-        gridBox.setAttribute("class", "grid-box");
-        gridContainer.appendChild(gridBox);
-    }  
+        let newColumn = document.createElement('div');
+        newColumn.setAttribute("class", "column");
+        gridContainer.appendChild(newColumn);
 
-    allBoxes = document.getElementsByClassName("grid-box");
-    console.log(allBoxes);
-    //allBoxes.style.width = (parseInt(gridContainer.style.width) / Math.sqrt(inputSize)) + "px";
-    //allBoxes.style.height = allBoxes.style.width;
+        for(let i=0; i < inputSize; i++){
+            let gridBox = document.createElement('div');
+            gridBox.setAttribute("class", "row");
+            newColumn.appendChild(gridBox);
+        }
+    }  
+    let pixels = 500/inputSize + "px";
+    console.log(pixels);
+    let allBoxes = document.getElementsByClassName("row");
+    for (let i = 0; i < allBoxes.length; i++){
+        allBoxes[i].style.width = pixels;
+        allBoxes[i].style.height = pixels;
+    }
 }
 
 function setNewColor(){
