@@ -1,19 +1,37 @@
 //Initialize constant variables
-const newColor = "gray";
+var newColor = "gray";
 const gridContainer = document.getElementById("grid-container");
 let allBoxes = document.getElementsByClassName("row");
 const gridButton = document.getElementById("grid-button");
+const gridButtonColor = document.getElementById("grid-button-color");
 let gridRow = 16;
 
+//Create initial 16x16 grid
 createGrid(gridRow);
+changeColorGrayscale();
 
 gridButton.addEventListener("click", function(){
-    gridRow = prompt("Please enter the size of the grid", "16");
-    gridRow = parseInt(gridRow);
+    getGridSize();
     clearGrid();
     createGrid(gridRow);
-    setNewColor();
+    changeColorGrayscale();
 })
+
+gridButtonColor.addEventListener("click", function(){
+    getGridSize();
+    clearGrid();
+    createGrid(gridRow);
+    changeColorMulti();
+})
+
+function getGridSize(){
+    gridRow = prompt("Please enter the size of the grid", "16");
+    gridRow = parseInt(gridRow);
+    while (isNaN(gridRow)){
+        gridRow = prompt("please enter the size of the grid", "16");
+        gridRow = parseInt(gridRow);
+    }
+}
 
 function clearGrid(){
     while (gridContainer.firstChild) {
@@ -43,7 +61,9 @@ function createGrid(inputSize){
     }
 }
 
-function setNewColor(){
+
+function changeColorGrayscale(){
+    newColor = "gray";
     for (let i=0; i < allBoxes.length; i++){
         allBoxes[i].addEventListener("mouseover", function(){
             allBoxes[i].style.background = newColor;
@@ -51,4 +71,14 @@ function setNewColor(){
     }
 };
 
-setNewColor();
+function changeColorMulti(){
+    for (let i=0; i < allBoxes.length; i++){
+        allBoxes[i].addEventListener("mouseover", function(){
+            let r = Math.random() * 256;
+            let g = Math.random() * 256;
+            let b = Math.random() * 256;
+            newColor = "rgb(" + r + ", " + g + ", " + b + ")";
+            allBoxes[i].style.background = newColor;
+        });
+    }
+};
